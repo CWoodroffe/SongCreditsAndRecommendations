@@ -10,9 +10,17 @@ const fs = require('fs');
 const JavaScriptObfuscator = require('javascript-obfuscator');
 const portNum = process.argv[2];
 
-// Send HTML at root, do not change
+//app.use('/', require('/public/search'));
+//app.use('/search', require('/public/search'));
+
+// Send index HTML at root, do not change
 app.get('/',function(req,res){
   res.sendFile(path.join(__dirname+'/public/index.html'));
+});
+
+app.get('/search', function(req,res){
+  //res.send('Testing!');
+  res.sendFile(path.join(__dirname + '/public/search.html'));
 });
 
 // Send Style, do not change
@@ -23,11 +31,13 @@ app.get('/style.css',function(req,res){
 // Send obfuscated JS, do not change
 app.get('/index.js',function(req,res){
   fs.readFile(path.join(__dirname+'/public/index.js'), 'utf8', function(err, contents) {
-    const minimizedContents = JavaScriptObfuscator.obfuscate(contents, {compact: true, controlFlowFlattening: true});
-    res.contentType('application/javascript');
-    res.send(minimizedContents._obfuscatedCode);
+  const minimizedContents = JavaScriptObfuscator.obfuscate(contents, {compact: true, controlFlowFlattening: true});
+  res.contentType('application/javascript');
+  res.send(minimizedContents._obfuscatedCode);
   });
+  //res.sendFile(path.join(__dirname + 'public/index.js'));
 });
+
 
 // Send Genius API key provided through RapidAPI
 app.get('/GeniusKey', function(req, res){

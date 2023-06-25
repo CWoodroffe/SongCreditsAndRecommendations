@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Genius/Spotify API Project</title>
+    <title>Genius/Spotify API Project - Results</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="CHANGE ME">
@@ -17,25 +17,31 @@
     <!-- Custom CSS End -->
 </head>
 <body>
-  <h3>Genius/Spotify API Project</h3>
-  <hr>
-  <div id="about">
-    <p>Search for a song you know to find new music you might enjoy! This site will search for producer credits as well
-      as songs recommended by Genius and Spotify.
-    </p>
-  </div>
-  <!--<hr>
+    <h3>Results</h3>
+    <hr>
     <form ref='searchForm'
       id='searchForm'>
       <div class="form-group">
-        <label for="entryBox">Search</label>
-        <input type="text" class="form-control" id="entryBox" value="" placeholder="Enter song...">
+        <label for="songName">Search</label>
+        <input type="text" class="form-control" id="songName" value="" placeholder="Enter song...">
+        <label for="perPage">Results per page</label>
+        <input type="text" class="form-control" id="perPage" value="10">
       </div>
       <div class="form-group">
         <input type='submit' class="btn btn-secondary">
       </div>
-    </form>-->
-  <a href="/search">Search Here</a>
+    </form>
+    <hr>
+    <div id="allResults">
+        <!--    Inserted by JS code for each result
+        <hr>            
+        <div id="result0">
+            <img href:hits[0].result.song_art_image_url></img>
+            <p>hits[0].result.full_title</p>
+            <p>hits[0].result.release_date_for_display</p>
+        </div>
+        -->
+    </div>
     
 
     <!--

@@ -4,7 +4,8 @@ jQuery(document).ready(function() {
 
 $('#searchForm').submit(function(e){      //Song search event
     e.preventDefault();
-    var searchURL = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=' + $('#entryBox').val() + '&per_page=10&page=1';     //search query
+    var searchURL = 'https://genius-song-lyrics1.p.rapidapi.com/search/?q=' + $('#songName').val() + '&per_page='       //Genius search query
+         + $('#perPage').val() + '&page=1';     
     jQuery.ajax({   //Ajax call to retrieve RapidAPI key
         type: 'get',
         url: '/GeniusKey',
@@ -19,14 +20,27 @@ $('#searchForm').submit(function(e){      //Song search event
                     'X-RapidAPI-Host': 'genius-song-lyrics1.p.rapidapi.com'
                 },
                 success: function (searchData) {
-                    console.log(searchData.hits[0].result.title);
-                    console.log(searchData.hits[1].result.title);
-                    console.log(searchData.hits[2].result.title);
-        
+                    if(Object.keys(searchData.hits).length == 0){
+                        alert("No results.");
+                        return;
+                    }
+                    for (var i  = 0; i < Object.keys(searchData.hits).length; i++){     //Iterate through all returned results, populate HTML.
+                        $('#allResults').append(
+                          '<hr>'          
+                        + '<div class="searchResult">'
+                            + '<img src="' + searchData.hits[i].result.song_art_image_thumbnail_url + '"'
+                                + ' alt="song art: ' + searchData.hits[i].result.full_title + '"'
+                                + ' width="150" height="150">'
+                            + '</img>'
+                            + '<p>' + searchData.hits[i].result.full_title + '</p>'
+                            + '<p>' + searchData.hits[i].result.release_date_for_display + '</p>'
+                        + '</div>'
+                        )
+                    }
                 },
                 fail: function(error) {
                     // Non-200 return, do something with error
-                    $('#blah').html("Error");
+                    alert(error);
                     console.log(error);
                 }
             });
@@ -38,4 +52,4 @@ $('#searchForm').submit(function(e){      //Song search event
             console.log(error);
         }
     }); 
-});    
+});

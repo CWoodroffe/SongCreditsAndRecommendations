@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.3.1",
     "express": "^4.17.1",
     "express-fileupload": "^1.2.0",
     "ffi-napi": "^3.0.1",

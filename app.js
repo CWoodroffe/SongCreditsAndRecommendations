@@ -1,5 +1,10 @@
 'use strict'
 
+// dotenv for hiding API keys
+const config = require("dotenv").config();
+const PORT = process.env.PORT;
+const GENIUS_API_KEY = process.env.GENIUS_API_KEY;
+
 // Express App (Routes)
 const express = require("express");
 const app     = express();
@@ -41,9 +46,16 @@ app.get('/index.js',function(req,res){
 
 // Send Genius API key provided through RapidAPI
 app.get('/GeniusKey', function(req, res){
+  res.send(
+    {
+      key: GENIUS_API_KEY
+    }
+  )
+
+  /*
   fs.readFile('GeniusKey.txt', 'utf8', (err, data) => {
     if (err) {
-      console.error(err);
+      console.error('test - ' + err);
       return;
     }
 
@@ -54,7 +66,8 @@ app.get('/GeniusKey', function(req, res){
       }
     )
   });
-})
+  */
+});
 
 app.listen(portNum);
 console.log('Running app at localhost: ' + portNum);

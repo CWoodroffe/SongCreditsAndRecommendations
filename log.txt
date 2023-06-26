@@ -1,0 +1,2 @@
+June 26
+	Moving the Genius API key into an .env file and treating it as an environment variable - thus in deployment, the API key can be configured as an environment variable (and allow API calls to work!).

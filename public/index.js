@@ -48,7 +48,7 @@ $('#searchForm').submit(function(e){      //Song search event
         },
         fail: function(error) {
             // Non-200 return, do something with error
-            $('#blah').html("Error");
+            alert(error);
             console.log(error);
         }
     }); 
